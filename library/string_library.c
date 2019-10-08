@@ -7,9 +7,7 @@
 size_t len(const char *cstr);
 
 int my_str_create(my_str_t* str, size_t buf_size){
-    if (!str) {
-        return -1;
-    }
+    
     //STAND OUT MEMORY
     str->data = malloc(buf_size+1);
     //check if memory stand out
