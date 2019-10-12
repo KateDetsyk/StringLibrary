@@ -21,4 +21,17 @@ int my_str_empty(const my_str_t* str);
 
 int my_str_getc(const my_str_t* str, size_t index);
 
+int my_str_putc(my_str_t* str, size_t index, char c);
+
+int my_str_reserve(my_str_t* str, size_t buf_size);
+
+int my_str_pushback(my_str_t* str, char c);
+
+int my_str_popback(my_str_t* str);
+
+void my_str_clear(my_str_t* str);
+
+int my_str_shrink_to_fit(my_str_t* str);
+
+int my_str_resize(my_str_t* str, size_t new_size, char sym);
 #endif
