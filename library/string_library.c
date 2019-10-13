@@ -4,14 +4,24 @@
 //typedef struct {size_t capacity_m;     possible size
 //                size_t size_m;         current string size
 //                char*  data;  } my_str_t; data-вказівник на блок памяті
-size_t len(const char *cstr);
+static size_t len(const char *cstr);
+static void change_size_m(my_str_t* str);
 
-size_t len(const char *cstr) {
+static size_t len(const char *cstr) {
     size_t i = 0;
     while (cstr[i] != '\0'){
         i++;
     }
     return i;
+}
+
+static void change_size_m(my_str_t* str) {
+    size_t index = 0;
+    str->size_m = 0;
+    while (str->data[index] != '\0') {
+        str->size_m++;
+        index++;
+    }
 }
 
 int my_str_create(my_str_t* str, size_t buf_size){
@@ -208,4 +218,36 @@ int my_str_resize(my_str_t* str, size_t new_size, char sym) {
         str->data[i] = sym;
     }
     return 0;
+}
+
+//! Прочитати стрічку із файлу. Читає цілий файл.
+//! Не давайте читанню вийти за межі буфера! За потреби --
+//! збільшуйте буфер.
+//! Рекомендую скористатися fgets().
+//! У випадку помилки повертає різні від'ємні числа, якщо все ОК -- 0.
+int my_str_read_file(my_str_t* str, FILE* file) {
+    if (!file) {
+        return -1;
+    }
+    if( fgets (str->data, str->capacity_m, file) != NULL ) {
+        change_size_m(str);
+        return 0;
+    }
+    return -1;
+}
+
+//! Аналог my_str_read_file, із stdin.
+int my_str_read(my_str_t* str) {
+    my_str_read_file(str, stdin);
+}
+
+//! Записати стрічку в файл:
+//! У випадку помилки повертає різні від'ємні числа, якщо все ОК -- 0.
+int my_str_write_file(const my_str_t* str, FILE* file) {
+    if (file != NULL) {
+        fputs (str->data, file);
+        fclose (file);
+        return 0;
+    }
+    return -1;
 }
