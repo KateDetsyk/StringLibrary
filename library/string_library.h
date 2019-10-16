@@ -8,6 +8,10 @@ typedef struct {size_t capacity_m;
                 size_t size_m;
                 char*  data;  } my_str_t;
 
+static size_t len(const char *cstr);
+static void change_size_m(my_str_t* str);
+
+
 int my_str_create(my_str_t* str, size_t buf_size);
 
 void my_str_free(my_str_t* str);

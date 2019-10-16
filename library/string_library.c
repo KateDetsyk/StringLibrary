@@ -4,8 +4,8 @@
 //typedef struct {size_t capacity_m;     possible size
 //                size_t size_m;         current string size
 //                char*  data;  } my_str_t; data-вказівник на блок памяті
-static size_t len(const char *cstr);
-static void change_size_m(my_str_t* str);
+//static size_t len(const char *cstr);
+//static void change_size_m(my_str_t* str);
 
 static size_t len(const char *cstr) {
     size_t i = 0;
